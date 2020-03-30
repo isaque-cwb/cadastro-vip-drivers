@@ -7,7 +7,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -52,6 +51,8 @@ public class ParceiroFormController implements Initializable {
 
 	@FXML
 	private TextField txtName;
+	
+
 
 	@FXML
 	private TextField txtEmail;
@@ -60,13 +61,15 @@ public class ParceiroFormController implements Initializable {
 	private DatePicker dpBirthDate;
 
 	@FXML
-	private TextField txtBaseSalary;
+	private TextField txtEndereco;
 
 	@FXML
 	private ComboBox<Department> comboBoxDepartment;
 
 	@FXML
 	private Label labelErrorName;
+	
+	
 
 	@FXML
 	private Label labelErrorEmail;
@@ -75,7 +78,7 @@ public class ParceiroFormController implements Initializable {
 	private Label labelErrorBirthDate;
 
 	@FXML
-	private Label labelErrorBaseSalary;
+	private Label labelErrorEndereco;
 
 	@FXML
 	private Button btSave;
@@ -110,12 +113,12 @@ public class ParceiroFormController implements Initializable {
 			entity = getFormaData();
 			service.saveOrUpdate(entity);
 			notifyDataChangeListener();
-			//Alerts.showAlert("Save completed!", null, "Save ok! Parceiro created or updated!", AlertType.CONFIRMATION);
+			Alerts.showAlert("Cadastrado!", null, "Tudo certo! Parceiro Cadastrado ou Atualizado!", AlertType.CONFIRMATION);
 			Utils.currentStage(event).close();
 		} catch (ValidationException e) {
 			setErrorMessages(e.getErrors());
 		} catch (DbException e) {
-			Alerts.showAlert("Erro saving object", null, e.getMessage(), AlertType.ERROR);
+			Alerts.showAlert("Erro ao cadastrar!", null, e.getMessage(), AlertType.ERROR);
 		}
 	}
 
@@ -134,27 +137,32 @@ public class ParceiroFormController implements Initializable {
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
 
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
-			exception.addError("name", "Field can't be empty");
+			exception.addError("name", "Campo não pode ficar vazio!");
 		}
 		obj.setName(txtName.getText());
+		
+
+
+		
+		
 
 		if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")) {
-			exception.addError("email", "Field can't be empty");
+			exception.addError("email", "Campo não pode ficar vazio!");
 		}
 		obj.setEmail(txtEmail.getText());
 		
 		if(dpBirthDate.getValue() == null) {
-			exception.addError("birthDate", "Field can't be empty");
+			exception.addError("birthDate", "Campo não pode ficar vazio!");
 		}
 		else {
 			Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
 			obj.setBirthDate(Date.from(instant));
 		}
 			
-		if (txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")) {
-			exception.addError("baseSalary", "Field can't be empty");
+		if (txtEndereco.getText() == null || txtEndereco.getText().trim().equals("")) {
+			exception.addError("Endereco", "Campo não pode ficar vazio!");
 		}
-		obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText()));
+		obj.setEndereco(txtEndereco.getText());
 
 		obj.setDepartment(comboBoxDepartment.getValue());
 		if (exception.getErrors().size() > 0) {
@@ -177,11 +185,12 @@ public class ParceiroFormController implements Initializable {
 
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
-		Constraints.setTextFieldMaxLength(txtName, 70);
-		Constraints.setTextFieldDouble(txtBaseSalary);
-		Constraints.setTextFieldMaxLength(txtEmail, 60);
+		Constraints.setTextFieldString(txtName);
+		
+		Constraints.setTextFieldMaxLength(txtEndereco, 60);
+		Constraints.setTextFieldMaxLength(txtEmail, 80);
 		Utils.formatDatePicker(dpBirthDate, "dd/MM/yyyy");
-
+		
 		initializeComboBoxDepartment();
 	}
 
@@ -191,9 +200,9 @@ public class ParceiroFormController implements Initializable {
 		}
 		txtId.setText(String.valueOf(entity.getId()));
 		txtName.setText(entity.getName());
+		
 		txtEmail.setText(entity.getEmail());
-		Locale.setDefault(Locale.US);
-		txtBaseSalary.setText(String.format("%.2f", entity.getBaseSalary()));
+		txtEndereco.setText(entity.getEndereco());
 		if (entity.getBirthDate() != null) {
 			dpBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault()));
 		}
@@ -219,7 +228,7 @@ public class ParceiroFormController implements Initializable {
 		labelErrorName.setText((fields.contains("name") ? errors.get("name") : ""));
 		labelErrorEmail.setText((fields.contains("email") ? errors.get("email") : ""));
 		labelErrorBirthDate.setText((fields.contains("birthDate") ? errors.get("birthDate") : ""));
-		labelErrorBaseSalary.setText((fields.contains("baseSalary") ? errors.get("baseSalary") : ""));
+		labelErrorEndereco.setText((fields.contains("Endereco") ? errors.get("Endereco") : ""));
 
 	}
 

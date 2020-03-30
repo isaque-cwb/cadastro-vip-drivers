@@ -47,6 +47,10 @@ public class ParceiroListController implements Initializable, DataChangeListener
 	@FXML
 	private TableColumn<Parceiro, String> tableColumnName;
 	
+	
+	
+	
+	
 	@FXML
 	private TableColumn<Parceiro, String> tableColumnEmail;
 	
@@ -54,7 +58,7 @@ public class ParceiroListController implements Initializable, DataChangeListener
 	private TableColumn<Parceiro, Date> tableColumnBirthDate;
 	
 	@FXML
-	private TableColumn<Parceiro, Double> tableColumnBaseSalary;
+	private TableColumn<Parceiro, String> tableColumnEndereco;
 	
 
 	@FXML
@@ -87,11 +91,12 @@ public class ParceiroListController implements Initializable, DataChangeListener
 	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 		Utils.formatTableColumnDate(tableColumnBirthDate, "dd/MM/yyyy");
-		tableColumnBaseSalary.setCellValueFactory(new PropertyValueFactory<>("baseSalary"));
-		Utils.formatTableColumnDouble(tableColumnBaseSalary, 2);
+		tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
+		
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewParceiro.prefHeightProperty().bind(stage.heightProperty());

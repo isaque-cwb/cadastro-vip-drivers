@@ -9,21 +9,23 @@ public class Parceiro implements Serializable {
 
 	private Integer id;
 	private String name;
+
 	private String email;
 	private Date birthDate;
-	private Double baseSalary;
+	private String Endereco;
 	
 	private Department department;
 	
 	public Parceiro() {
 	}
 
-	public Parceiro(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
+	public Parceiro(Integer id, String name, String email, Date birthDate, String Endereco, Department department) {
 		this.id = id;
 		this.name = name;
+		
 		this.email = email;
 		this.birthDate = birthDate;
-		this.baseSalary = baseSalary;
+		this.Endereco = Endereco;
 		this.department = department;
 	}
 
@@ -42,6 +44,10 @@ public class Parceiro implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	
+	
 
 	public String getEmail() {
 		return email;
@@ -59,12 +65,12 @@ public class Parceiro implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public Double getBaseSalary() {
-		return baseSalary;
+	public String getEndereco() {
+		return Endereco;
 	}
 
-	public void setBaseSalary(Double baseSalary) {
-		this.baseSalary = baseSalary;
+	public void setEndereco(String Endereco) {
+		this.Endereco = Endereco;
 	}
 
 	public Department getDepartment() {
@@ -102,7 +108,9 @@ public class Parceiro implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Parceiro [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
-				+ baseSalary + ", department=" + department + "]";
+		return "Parceiro [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", Endereco="
+				+ Endereco + ", department=" + department + "]";
 	}
+
+	
 }

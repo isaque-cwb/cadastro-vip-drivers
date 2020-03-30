@@ -28,6 +28,7 @@ public class Utils {
 		}
 	}
 	
+	
 	public static Double tryParseToDouble(String str) {
 		try {
 			return Double.parseDouble(str);
@@ -89,7 +90,8 @@ public class Utils {
 					return "";
 				}
 			}
-
+			
+		
 			@Override
 			public LocalDate fromString(String string) {
 				if (string != null && !string.isEmpty()) {
@@ -98,7 +100,8 @@ public class Utils {
 					return null;
 				}
 			}
+	
 		});
 	}
-
+	
 }
