@@ -113,7 +113,7 @@ public class ParceiroFormController implements Initializable {
 			entity = getFormaData();
 			service.saveOrUpdate(entity);
 			notifyDataChangeListener();
-			Alerts.showAlert("Cadastrado!", null, "Tudo certo! Parceiro Cadastrado ou Atualizado!", AlertType.CONFIRMATION);
+			Alerts.showAlert("Cadastrado!", null, "Tudo certo! Parceiro Cadastrado ou Alterado com sucesso!", AlertType.CONFIRMATION);
 			Utils.currentStage(event).close();
 		} catch (ValidationException e) {
 			setErrorMessages(e.getErrors());
@@ -203,6 +203,7 @@ public class ParceiroFormController implements Initializable {
 		
 		txtEmail.setText(entity.getEmail());
 		txtEndereco.setText(entity.getEndereco());
+		
 		if (entity.getBirthDate() != null) {
 			dpBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault()));
 		}

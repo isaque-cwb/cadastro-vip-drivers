@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -24,6 +25,7 @@ public class Main extends Application {
 			mainScene = new Scene(scrollPane);
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Cadastro Vip Drivers");
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/application/Logo.ico")));
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

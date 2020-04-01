@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -110,6 +111,8 @@ public class ParceiroListController implements Initializable, DataChangeListener
 		obsList = FXCollections.observableArrayList(list);
 		tableViewParceiro.setItems(obsList);
 		initEditButtons();
+		
+
 		initRemoveButtons();
 	}
 
@@ -124,6 +127,7 @@ public class ParceiroListController implements Initializable, DataChangeListener
 			controller.loadAssociatedObjects();
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
+			
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Entre com Dados do Parceiro(a)");
@@ -149,6 +153,7 @@ public class ParceiroListController implements Initializable, DataChangeListener
 		tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		tableColumnEDIT.setCellFactory(param -> new TableCell<Parceiro, Parceiro>() {
 			private final Button button = new Button("edit");
+			
 
 			@Override
 			protected void updateItem(Parceiro obj, boolean empty) {
@@ -160,6 +165,8 @@ public class ParceiroListController implements Initializable, DataChangeListener
 				setGraphic(button);
 				button.setOnAction(
 						event -> createDialogForm(obj, "/gui/ParceiroForm.fxml", Utils.currentStage(event)));
+				
+
 			}
 		});
 	}
@@ -174,7 +181,7 @@ public class ParceiroListController implements Initializable, DataChangeListener
 				super.updateItem(obj, empty);
 				if (obj == null) {
 					setGraphic(null);
-					return;
+					return; 
 				}
 				setGraphic(button);
 				button.setOnAction(event -> removeEntity(obj));
@@ -192,6 +199,7 @@ public class ParceiroListController implements Initializable, DataChangeListener
 			try {
 				service.remove(obj);
 				updateTableView();
+				Alerts.showAlert("Pronto, Removido!", null, "Parceiro Removido com sucesso!", Alert.AlertType.CONFIRMATION);
 			}
 			catch(DbIntegrityException e) {
 				Alerts.showAlert("ERRO ao remover parceiro", null, e.getMessage(), AlertType.ERROR);

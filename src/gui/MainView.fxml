@@ -4,11 +4,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
    <content>
-      <VBox prefHeight="261.0" prefWidth="431.0">
+      <VBox prefHeight="397.0" prefWidth="531.0">
          <children>
             <MenuBar>
               <menus>
@@ -25,6 +28,15 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <Pane prefHeight="386.0" prefWidth="570.0">
+               <children>
+                  <ImageView fitHeight="341.0" fitWidth="310.0" layoutX="111.0" layoutY="16.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../application/logo2.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </VBox>
    </content>
