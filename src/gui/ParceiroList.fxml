@@ -27,8 +27,9 @@
       <TableView fx:id="tableViewParceiro" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="20.666655898094177" text="Id" />
-          <TableColumn fx:id="tableColumnName" prefWidth="119.33334922790527" text="Name" />
-            <TableColumn fx:id="tableColumnEmail" prefWidth="111.33332824707031" text="Email" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="113.33333778381348" text="Nome" />
+            <TableColumn fx:id="tableColumnTelefone" prefWidth="94.66668701171875" text="Telefone" />
+            <TableColumn fx:id="tableColumnEmail" prefWidth="99.33332824707031" text="Email" />
             <TableColumn fx:id="tableColumnBirthDate" prefWidth="74.6666259765625" text="Birth Date" />
             <TableColumn fx:id="tableColumnEndereco" prefWidth="134.6666259765625" text="Endereço" />
             <TableColumn fx:id="tableColumnEDIT" prefWidth="59.999969482421875" />

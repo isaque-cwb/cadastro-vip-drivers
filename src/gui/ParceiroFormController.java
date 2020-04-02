@@ -50,9 +50,10 @@ public class ParceiroFormController implements Initializable {
 	private TextField txtId;
 
 	@FXML
-	private TextField txtName;
+	private TextField txtNome;
 	
-
+	@FXML
+	private TextField txtTelefone;
 
 	@FXML
 	private TextField txtEmail;
@@ -67,9 +68,10 @@ public class ParceiroFormController implements Initializable {
 	private ComboBox<Department> comboBoxDepartment;
 
 	@FXML
-	private Label labelErrorName;
+	private Label labelErrorNome;
 	
-	
+	@FXML
+	private Label labelErrorTelefone;
 
 	@FXML
 	private Label labelErrorEmail;
@@ -113,7 +115,7 @@ public class ParceiroFormController implements Initializable {
 			entity = getFormaData();
 			service.saveOrUpdate(entity);
 			notifyDataChangeListener();
-			Alerts.showAlert("Cadastrado!", null, "Tudo certo! Parceiro Cadastrado ou Alterado com sucesso!", AlertType.CONFIRMATION);
+			Alerts.showAlert("Cadastrado!", null, "Tudo certo! Parceiro Cadastrado ou Alterado com sucesso!", AlertType.INFORMATION);
 			Utils.currentStage(event).close();
 		} catch (ValidationException e) {
 			setErrorMessages(e.getErrors());
@@ -136,14 +138,15 @@ public class ParceiroFormController implements Initializable {
 
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
 
-		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
-			exception.addError("name", "Campo não pode ficar vazio!");
+		if (txtNome.getText() == null || txtNome.getText().trim().equals("")) {
+			exception.addError("nome", "Campo não pode ficar vazio!");
 		}
-		obj.setName(txtName.getText());
-		
+		obj.setNome(txtNome.getText());
 
-
-		
+		if (txtTelefone.getText() == null || txtTelefone.getText().trim().equals("")) {
+			exception.addError("telefone", "Campo não pode ficar vazio!");
+		}
+		obj.setTelefone(txtTelefone.getText());
 		
 
 		if (txtEmail.getText() == null || txtEmail.getText().trim().equals("")) {
@@ -185,8 +188,9 @@ public class ParceiroFormController implements Initializable {
 
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
-		Constraints.setTextFieldString(txtName);
-		
+		Constraints.setTextFieldString(txtNome);
+		//Constraints.setTextFieldTelefone(txtTelefone);
+		Constraints.setTextFieldMaxLength(txtTelefone, 15);
 		Constraints.setTextFieldMaxLength(txtEndereco, 60);
 		Constraints.setTextFieldMaxLength(txtEmail, 80);
 		Utils.formatDatePicker(dpBirthDate, "dd/MM/yyyy");
@@ -199,8 +203,8 @@ public class ParceiroFormController implements Initializable {
 			throw new IllegalStateException("Entity was null");
 		}
 		txtId.setText(String.valueOf(entity.getId()));
-		txtName.setText(entity.getName());
-		
+		txtNome.setText(entity.getNome());
+		txtTelefone.setText(String.valueOf(entity.getTelefone()));
 		txtEmail.setText(entity.getEmail());
 		txtEndereco.setText(entity.getEndereco());
 		
@@ -226,10 +230,11 @@ public class ParceiroFormController implements Initializable {
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 
-		labelErrorName.setText((fields.contains("name") ? errors.get("name") : ""));
+		labelErrorNome.setText((fields.contains("nome") ? errors.get("nome") : ""));
+		labelErrorTelefone.setText((fields.contains("telefone") ? errors.get("telefone") : ""));
 		labelErrorEmail.setText((fields.contains("email") ? errors.get("email") : ""));
 		labelErrorBirthDate.setText((fields.contains("birthDate") ? errors.get("birthDate") : ""));
-		labelErrorEndereco.setText((fields.contains("Endereco") ? errors.get("Endereco") : ""));
+		labelErrorEndereco.setText((fields.contains("endereco") ? errors.get("endereco") : ""));
 
 	}
 

@@ -31,17 +31,17 @@ public class ParceiroDaoJDBC implements ParceiroDao {
 		try {
 			st = conn.prepareStatement(
 					"INSERT INTO parceiro "
-					+ "(Name, Email, BirthDate, Endereco, DepartmentId) "
+					+ "(Nome, Telefone, Email, BirthDate, Endereco, DepartmentId) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?)",
+					+ "(?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			
-			st.setString(1, obj.getName());
-			
-			st.setString(2, obj.getEmail());
-			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
-			st.setString(4, obj.getEndereco());
-			st.setInt(5, obj.getDepartment().getId());
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getTelefone());
+			st.setString(3, obj.getEmail());
+			st.setDate(4, new java.sql.Date(obj.getBirthDate().getTime()));
+			st.setString(5, obj.getEndereco());
+			st.setInt(6, obj.getDepartment().getId());
 			
 			int rowsAffected = st.executeUpdate();
 			
@@ -71,16 +71,16 @@ public class ParceiroDaoJDBC implements ParceiroDao {
 		try {
 			st = conn.prepareStatement(
 					"UPDATE parceiro "
-					+ "SET Name = ?, Email = ?, BirthDate = ?, Endereco = ?, DepartmentId = ? "
+					+ "SET Nome = ?, Telefone = ?, Email = ?, BirthDate = ?, Endereco = ?, DepartmentId = ? "
 					+ "WHERE Id = ?");
 			
-			st.setString(1, obj.getName());
-			
-			st.setString(2, obj.getEmail());
-			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime()));
-			st.setString(4, obj.getEndereco());
-			st.setInt(5, obj.getDepartment().getId());
-			st.setInt(6, obj.getId());
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getTelefone());
+			st.setString(3, obj.getEmail());
+			st.setDate(4, new java.sql.Date(obj.getBirthDate().getTime()));
+			st.setString(5, obj.getEndereco());
+			st.setInt(6, obj.getDepartment().getId());
+			st.setInt(7, obj.getId());
 			
 			st.executeUpdate();
 		}
@@ -116,7 +116,7 @@ public class ParceiroDaoJDBC implements ParceiroDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT parceiro.*,department.Name as DepName "
+					"SELECT parceiro.*,department.Nome as DepNome "
 					+ "FROM parceiro INNER JOIN department "
 					+ "ON parceiro.DepartmentId = department.Id "
 					+ "WHERE parceiro.Id = ?");
@@ -142,8 +142,8 @@ public class ParceiroDaoJDBC implements ParceiroDao {
 	private Parceiro instantiateParceiro(ResultSet rs, Department dep) throws SQLException {
 		Parceiro obj = new Parceiro();
 		obj.setId(rs.getInt("Id"));
-		obj.setName(rs.getString("Name"));
-		
+		obj.setNome(rs.getString("Nome"));
+		obj.setTelefone(rs.getString("Telefone"));
 		obj.setEmail(rs.getString("Email"));
 		obj.setEndereco(rs.getString("Endereco"));
 		obj.setBirthDate(new java.util.Date(rs.getTimestamp("BirthDate").getTime()));
@@ -203,11 +203,11 @@ public class ParceiroDaoJDBC implements ParceiroDao {
 		ResultSet rs = null;
 		try {
 			st = conn.prepareStatement(
-					"SELECT parceiro.*,department.Name as DepName "
+					"SELECT parceiro.*,department.Nome as DepNome "
 					+ "FROM parceiro INNER JOIN department "
 					+ "ON parceiro.DepartmentId = department.Id "
 					+ "WHERE DepartmentId = ? "
-					+ "ORDER BY Name");
+					+ "ORDER BY Nome");
 			
 			st.setInt(1, department.getId());
 			

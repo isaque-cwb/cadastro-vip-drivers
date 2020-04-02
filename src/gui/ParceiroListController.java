@@ -46,11 +46,10 @@ public class ParceiroListController implements Initializable, DataChangeListener
 	private TableColumn<Parceiro, Integer> tableColumnId;
 
 	@FXML
-	private TableColumn<Parceiro, String> tableColumnName;
+	private TableColumn<Parceiro, String> tableColumnNome;
 	
-	
-	
-	
+	@FXML
+	private TableColumn<Parceiro, Integer> tableColumnTelefone;
 	
 	@FXML
 	private TableColumn<Parceiro, String> tableColumnEmail;
@@ -91,8 +90,8 @@ public class ParceiroListController implements Initializable, DataChangeListener
 
 	private void initializeNodes() {
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-		
+		tableColumnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		tableColumnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 		Utils.formatTableColumnDate(tableColumnBirthDate, "dd/MM/yyyy");

@@ -8,24 +8,24 @@ public class Parceiro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String name;
-
+	private String nome;
+	private String telefone;
 	private String email;
 	private Date birthDate;
-	private String Endereco;
+	private String endereco;
 	
 	private Department department;
 	
 	public Parceiro() {
 	}
 
-	public Parceiro(Integer id, String name, String email, Date birthDate, String Endereco, Department department) {
+	public Parceiro(Integer id, String nome, String telefone, String email, Date birthDate, String endereco, Department department) {
 		this.id = id;
-		this.name = name;
-		
+		this.nome = nome;
+		this.telefone = telefone;
 		this.email = email;
 		this.birthDate = birthDate;
-		this.Endereco = Endereco;
+		this.endereco = endereco;
 		this.department = department;
 	}
 
@@ -37,18 +37,23 @@ public class Parceiro implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 	
-	
-	
-
 	public String getEmail() {
 		return email;
 	}
@@ -66,11 +71,11 @@ public class Parceiro implements Serializable {
 	}
 
 	public String getEndereco() {
-		return Endereco;
+		return endereco;
 	}
 
-	public void setEndereco(String Endereco) {
-		this.Endereco = Endereco;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Department getDepartment() {
@@ -108,9 +113,10 @@ public class Parceiro implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Parceiro [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", Endereco="
-				+ Endereco + ", department=" + department + "]";
+		return "Parceiro [id=" + id + ", nome=" + nome + ", telefone= " + telefone + ", email=" + email + ", birthDate=" + birthDate + ", endereco="
+				+ endereco + ", department=" + department + "]";
 	}
 
+	
 	
 }

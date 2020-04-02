@@ -37,6 +37,16 @@ public class Constraints {
 	        }
 	    });
 	}
+	
+	
+	public static void setTextFieldTelefone(TextField txt) {
+		txt.textProperty().addListener((obs, oldValue, newValue) -> {
+	        if (newValue != null && !newValue.matches("\\d{2}\\s\\d{5}\\-\\d{4}")) {
+	        	txt.setText(oldValue);
+	        }
+	        //Alerts.showAlert("Erro de formato!", null, "Erro no formato\n do Numero de telefone \n Digite (ddd) ", Alert.AlertType.ERROR);
+	    });
+	}
 
 	
 	
