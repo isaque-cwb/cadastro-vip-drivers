@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="361.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ParceiroListController">
+<VBox prefHeight="484.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ParceiroListController">
    <children>
       <Label text="Registro de Parceiro(a)">
          <font>
@@ -24,14 +24,14 @@
           <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView fx:id="tableViewParceiro" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewParceiro" onInputMethodTextChanged="#onDataChanged" onKeyPressed="#updateTableView" onKeyReleased="#onDataChanged" prefHeight="200.0" prefWidth="725.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="20.666655898094177" text="Id" />
           <TableColumn fx:id="tableColumnNome" prefWidth="113.33333778381348" text="Nome" />
-            <TableColumn fx:id="tableColumnTelefone" prefWidth="94.66668701171875" text="Telefone" />
-            <TableColumn fx:id="tableColumnEmail" prefWidth="99.33332824707031" text="Email" />
-            <TableColumn fx:id="tableColumnBirthDate" prefWidth="74.6666259765625" text="Birth Date" />
-            <TableColumn fx:id="tableColumnEndereco" prefWidth="134.6666259765625" text="Endereço" />
+            <TableColumn fx:id="tableColumnTelefone" prefWidth="85.33334350585938" text="Telefone" />
+            <TableColumn fx:id="tableColumnEmail" prefWidth="101.33332824707031" text="Email" />
+            <TableColumn fx:id="tableColumnBirthDate" prefWidth="91.33331298828125" text="Data de Nascimento" />
+            <TableColumn fx:id="tableColumnEndereco" prefWidth="102.00003051757812" text="Endereço" />
             <TableColumn fx:id="tableColumnEDIT" prefWidth="59.999969482421875" />
             <TableColumn fx:id="tableColumnREMOVE" prefWidth="92.0" />
         </columns>

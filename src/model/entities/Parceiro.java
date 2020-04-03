@@ -14,12 +14,15 @@ public class Parceiro implements Serializable {
 	private Date birthDate;
 	private String endereco;
 	
+	private String contatoFamiliar;
+	
+	
 	private Department department;
 	
 	public Parceiro() {
 	}
 
-	public Parceiro(Integer id, String nome, String telefone, String email, Date birthDate, String endereco, Department department) {
+	public Parceiro(Integer id, String nome, String telefone, String email, Date birthDate, String endereco, String contatoFamiliar,  Department department) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -27,6 +30,8 @@ public class Parceiro implements Serializable {
 		this.birthDate = birthDate;
 		this.endereco = endereco;
 		this.department = department;
+		
+		this.contatoFamiliar = contatoFamiliar;
 	}
 
 	public Integer getId() {
@@ -78,6 +83,15 @@ public class Parceiro implements Serializable {
 		this.endereco = endereco;
 	}
 
+
+	public String getContatoFamiliar() {
+		return contatoFamiliar;
+	}
+
+	public void setContatoFamiliar(String contatoFamiliar) {
+		this.contatoFamiliar = contatoFamiliar;
+	}
+
 	public Department getDepartment() {
 		return department;
 	}
@@ -85,6 +99,9 @@ public class Parceiro implements Serializable {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+	
+	
+
 
 	@Override
 	public int hashCode() {
@@ -113,10 +130,11 @@ public class Parceiro implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Parceiro [id=" + id + ", nome=" + nome + ", telefone= " + telefone + ", email=" + email + ", birthDate=" + birthDate + ", endereco="
-				+ endereco + ", department=" + department + "]";
+		return "Parceiro [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", birthDate="
+				+ birthDate + ", endereco=" + endereco + ", contatoFamiliar="
+				+ contatoFamiliar + ", department=" + department + "]";
 	}
 
-	
+		
 	
 }

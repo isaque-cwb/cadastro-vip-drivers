@@ -95,8 +95,8 @@ public class ParceiroListController implements Initializable, DataChangeListener
 		tableColumnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		tableColumnBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
 		Utils.formatTableColumnDate(tableColumnBirthDate, "dd/MM/yyyy");
-		tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("Endereco"));
-		
+		tableColumnEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+	
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewParceiro.prefHeightProperty().bind(stage.heightProperty());

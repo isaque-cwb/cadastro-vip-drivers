@@ -81,7 +81,7 @@ public class Utils {
 			{
 				datePicker.setPromptText(format.toLowerCase());
 			}
-
+			
 			@Override
 			public String toString(LocalDate date) {
 				if (date != null) {

@@ -15,6 +15,7 @@ import db.DbException;
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
+import gui.util.TextFieldFormatter;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,6 +64,9 @@ public class ParceiroFormController implements Initializable {
 
 	@FXML
 	private TextField txtEndereco;
+	
+
+	
 
 	@FXML
 	private ComboBox<Department> comboBoxDepartment;
@@ -81,6 +85,11 @@ public class ParceiroFormController implements Initializable {
 
 	@FXML
 	private Label labelErrorEndereco;
+	
+
+	
+	@FXML
+	private Label labelErrorContatoFamiliar;
 
 	@FXML
 	private Button btSave;
@@ -123,6 +132,18 @@ public class ParceiroFormController implements Initializable {
 			Alerts.showAlert("Erro ao cadastrar!", null, e.getMessage(), AlertType.ERROR);
 		}
 	}
+	
+	@FXML
+	private void fomartNumCel() {
+		TextFieldFormatter numero = new TextFieldFormatter();
+		numero.setMask("(##)#####-####");
+		numero.setCaracteresValidos("0123456789");
+		numero.setTf(txtTelefone);
+		numero.formatter();
+		
+	}
+	
+	
 
 	private void notifyDataChangeListener() {
 		for (DataChangeListener listener : dataChangeListeners) {
@@ -163,9 +184,11 @@ public class ParceiroFormController implements Initializable {
 		}
 			
 		if (txtEndereco.getText() == null || txtEndereco.getText().trim().equals("")) {
-			exception.addError("Endereco", "Campo não pode ficar vazio!");
+			exception.addError("endereco", "Campo não pode ficar vazio!");
 		}
 		obj.setEndereco(txtEndereco.getText());
+		
+
 
 		obj.setDepartment(comboBoxDepartment.getValue());
 		if (exception.getErrors().size() > 0) {
@@ -189,11 +212,12 @@ public class ParceiroFormController implements Initializable {
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
 		Constraints.setTextFieldString(txtNome);
-		//Constraints.setTextFieldTelefone(txtTelefone);
-		Constraints.setTextFieldMaxLength(txtTelefone, 15);
-		Constraints.setTextFieldMaxLength(txtEndereco, 60);
+		Constraints.setTextFieldMaxLength(txtTelefone, 50);
 		Constraints.setTextFieldMaxLength(txtEmail, 80);
 		Utils.formatDatePicker(dpBirthDate, "dd/MM/yyyy");
+		Constraints.setTextFieldMaxLength(txtEndereco, 80);
+
+		
 		
 		initializeComboBoxDepartment();
 	}
@@ -207,6 +231,7 @@ public class ParceiroFormController implements Initializable {
 		txtTelefone.setText(String.valueOf(entity.getTelefone()));
 		txtEmail.setText(entity.getEmail());
 		txtEndereco.setText(entity.getEndereco());
+
 		
 		if (entity.getBirthDate() != null) {
 			dpBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault()));
@@ -235,6 +260,7 @@ public class ParceiroFormController implements Initializable {
 		labelErrorEmail.setText((fields.contains("email") ? errors.get("email") : ""));
 		labelErrorBirthDate.setText((fields.contains("birthDate") ? errors.get("birthDate") : ""));
 		labelErrorEndereco.setText((fields.contains("endereco") ? errors.get("endereco") : ""));
+
 
 	}
 
